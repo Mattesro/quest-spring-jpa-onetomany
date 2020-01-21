@@ -5,48 +5,58 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.*;
+import java.util.List;
+
 @Entity
 public class School {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private Long capacity;
-    private String country;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public School() {
-    }
+  private String name;
+  private Long capacity;
+  private String country;
 
-    public Long getId() {
-        return id;
-    }
+  @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+  private List<Wizard> wizards;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public School() {
+  }
 
-    public String getName() {
-        return name;
-    }
+  public Long getId() {
+    return id;
+  }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Long getCapacity() {
-        return capacity;
-    }
+  public Long getCapacity() {
+    return capacity;
+  }
+  public void setCapacity(Long capacity) {
+    this.capacity = capacity;
+  }
 
-    public void setCapacity(Long capacity) {
-        this.capacity = capacity;
-    }
+  public String getCountry() {
+    return country;
+  }
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
+  public List<Wizard> getWizards() {
+    return wizards;
+  }
+  public void setWizards(List<Wizard> wizards) {
+    this.wizards = wizards;
+  }
 }
